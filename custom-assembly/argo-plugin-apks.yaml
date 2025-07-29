@@ -1,0 +1,7 @@
+contents:
+  packages:
+    - jq
+    - yq 
+    - helm 
+    - bash-binsh
+    - crane
