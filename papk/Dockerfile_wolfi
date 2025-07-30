@@ -1,0 +1,11 @@
+ARG ORG="ky-rafaels.example.com"
+
+FROM cgr.dev/${ORG}/python:latest-dev
+
+USER root
+RUN echo 'https://packages.wolfi.dev/os' >  /etc/apk/repositories && \
+    wget -O /etc/apk/keys/wolfi-signing.rsa.pub https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+
+RUN apk update && apk add --no-cache jq yq helm curl 
+
+USER 65532

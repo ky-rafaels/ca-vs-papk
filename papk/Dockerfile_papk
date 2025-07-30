@@ -1,0 +1,12 @@
+FROM cgr.dev/chainguard/python:latest-dev
+
+ARG PAPK_ORG="ky-rafaels.example.com"
+
+USER root
+RUN echo "https://apk.cgr.dev/\$PAPK_ORG" > /etc/apk/repositories 
+
+RUN --mount=type=secret,id=cgr-token \
+  sh -c "export HTTP_AUTH=basic:apk.cgr.dev:user:$(chainctl auth token --audience apk.cgr.dev) \
+  apk update && apk add --no-cache curl jq yq helm curl"
+
+USER 65532
