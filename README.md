@@ -67,7 +67,20 @@ EOF
 docker build -t py-papk-build:v1 .
 ```
 
-If you'd like to install a package from wolfi os package repo
+We can then also validate which repo a particular apk package was installed from
+
+```bash
+docker run -it --user root -e "HTTP_AUTH=basic:apk.cgr.dev:user:$(chainctl auth token --audience apk.cgr.dev)" --rm --entrypoint /bin/sh py-papk-build:v1
+
+/# apk policy curl --no-cache
+# ----OUTPUT----
+fetch https://apk.cgr.dev/ky-rafaels.example.com/aarch64/APKINDEX.tar.gz
+curl policy:
+  8.15.0-r1:
+    lib/apk/db/installed
+```
+
+### If you'd like to install a package from wolfi os package repo
 
 ```bash
 cat << EOF > Dockerfile
