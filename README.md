@@ -1,4 +1,4 @@
-# Building the same image with Chainguard Custom Assembly and Private APK
+# Building images with Chainguard Custom Assembly vs Private APK
 
 # Create a plugin using custom-assembly
 
